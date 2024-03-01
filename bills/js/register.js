@@ -1,20 +1,21 @@
-function registrarServicio() {
-    const nombre = document.getElementById("nombre").value;
+function registrarFactura() {
+    const id = document.getElementById("id").value; 
+    const servicio = document.getElementById("service_id").value; 
+    const usuario = document.getElementById("usuario").value;
+    const valor = document.getElementById("valor").value;
+    const fecha = document.getElementById("fecha").value;
 
-    // Validar que se proporcionó el nombre del servicio
-    if (!nombre) {
-        mostrarMensajeError("Por favor, ingrese el nombre del servicio.");
-        return;
-    }
-
-    // Construir objeto con datos del servicio
-    const nuevoServicio = {
-        nombre: nombre
-        // Puedes agregar más campos aquí según tu estructura de datos
-    };
+   // Construir objeto con datos de registro
+   const nuevaFactura = {
+    id: id,
+    idUsuario: usuario,
+    idServicio: servicio,
+    valor: valor,
+    fechaFactura: fecha
+};
 
     // Enviar datos al servicio REST para registrar el servicio
-    fetch('http://localhost:8080/services/create', {
+    fetch('http://localhost:8080/factura', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -25,20 +26,20 @@ function registrarServicio() {
 
         },
         //body: formData,
-        body: JSON.stringify({ nombre }),
+        body: JSON.stringify({nuevaFactura }),
     })
     .then(data => {
         // Manejar la respuesta del servicio REST
         if (data.ok) {
-            mostrarMensajeExito("Registro de servicio exitoso");
+            mostrarMensajeExito("Registro de factura exitoso");
             // Puedes redirigir a otra página o realizar otras acciones necesarias
         } else {
-            mostrarMensajeError("Error en el registro del servicio");
+            mostrarMensajeError("Error en el registro de factura");
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        mostrarMensajeError("Ocurrió un error en el registro del servicio");
+        mostrarMensajeError("Ocurrió un error en el registro de factura");
     });
 }
 

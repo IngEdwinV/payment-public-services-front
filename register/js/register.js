@@ -1,5 +1,6 @@
 function registrarUsuario() {
     // Obtener valores de los campos de registro
+    const documento = document.getElementById("id").value;
     const nombre = document.getElementById("nombre").value;
     const apellido = document.getElementById("apellido").value;
     const password = document.getElementById("password").value;
@@ -9,6 +10,7 @@ function registrarUsuario() {
 
     // Construir objeto con datos de registro
     const nuevoUsuario = {
+        id: documento,
         nombre: nombre,
         apellido: apellido,
         password: password,
@@ -18,18 +20,23 @@ function registrarUsuario() {
     };
 
     // Enviar datos al servicio REST para registrar el usuario
-    fetch('tu_servicio_rest/registro', {
+    fetch('http://localhost:8080/users/create', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'http://127.0.0.1:5500',
+          'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Credentials': 'true',
+
         },
         body: JSON.stringify(nuevoUsuario),
     })
-    .then(response => response.json())
-    .then(data => {
+   .then(data => {
         // Manejar la respuesta del servicio REST
-        if (data.success) {
+        if (data.ok) {
             alert("Registro exitoso");
+            window.location.href = '../../login/login.html';
             // Puedes redirigir a otra página o realizar otras acciones necesarias
         } else {
             alert("Error en el registro");

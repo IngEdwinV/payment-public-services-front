@@ -7,7 +7,17 @@ function cargarServicios() {
     // Aquí puedes hacer la llamada a tu servicio REST para obtener la lista de servicios
     // por ejemplo, utilizando la función fetch()
 
-    fetch('tu_servicio_rest/servicios')
+    fetch('http://localhost:8080/services/all', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'http://127.0.0.1:5500',
+          'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
+          'Access-Control-Allow-Headers': 'Content-Type',
+          'Access-Control-Allow-Credentials': 'true',
+
+        }
+    })
     .then(response => response.json())
     .then(data => {
         // Manejar la respuesta del servicio REST
@@ -29,18 +39,16 @@ function mostrarServicios(servicios) {
     // Limpiar el contenido existente
     servicesListContainer.innerHTML = '';
 
+    console.log(servicios);
+
     // Crear elementos para cada servicio y agregarlos al contenedor
     servicios.forEach(servicio => {
         const servicioElement = document.createElement('div');
         servicioElement.className = 'servicio';
 
-        const nombreElement = document.createElement('h2');
-        nombreElement.textContent = servicio.nombre;
-
         const detallesElement = document.createElement('p');
-        detallesElement.textContent = `ID: ${servicio.id}, Descripción: ${servicio.descripcion}`;
+        detallesElement.textContent = `Name: ${servicio}`;
 
-        servicioElement.appendChild(nombreElement);
         servicioElement.appendChild(detallesElement);
 
         servicesListContainer.appendChild(servicioElement);
