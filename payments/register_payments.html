@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Public Services</title>
+    <link rel="stylesheet" href="../css/general_styles.css">
+    <script src="js/search.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Payment Public Services</h1>
+</header>
+
+<nav>
+    <ul>
+        <li><a href="#">Inicio</a></li>
+        <li class="dropdown">
+            <a href="#">Servicios</a>
+            <div class="dropdown-content">
+                <a href="../services/search_services.html">Consultar</a>
+                <a href="../services/register_service.html">Registrar</a>
+                <a href="../payments/search_payments.html">Pagos</a>
+            </div>
+        </li>
+        <li class="selected"><a href="../payments/search_payments.html">Pagos</a></li>
+        <li><a href="../users/search_users.html">Usuarios</a></li>
+        <li><a href="../login/login.html">Salir</a></li>
+    </ul>
+</nav>
+
+<section>
+    <div class="registro-container">
+        <h1>Registro de Pagos</h1>
+        <form id="registroPaymentsForm">
+
+            <label for="id">Id del Servicio:</label>
+            <input type="text" id="id" name="id" required>
+
+            <label for="factura">Id de Factura:</label>
+            <input type="text" id="factura" name="factura" required>
+
+            <label for="valor">Valor de Factura:</label>
+            <input type="number" id="valor" name="valor" required>
+
+            <label for="fecha">Fecha de Factura:</label>
+            <input type="date" id="fecha" name="fecha" required>
+    
+            <button class="button" type="button" onclick="">Ir a Pagar</button>
+
+            <a class="button" href="../index/index.html">Cancelar</a>
+        </form>
+
+        <div id="mensajeRegistro"></div>
+    </div>
+    
+</section>
+
+</body>
+</html>
